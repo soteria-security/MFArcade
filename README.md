@@ -1,4 +1,5 @@
 <img src="Images/MFArcade.png" width=35% height=35% />
+
 # MFAcade
 MFArcade is a PowerShell script that aims to assist administrators in generating and understanding reports of Microsoft 365 User Multi-factor Authentication Registration Status and Highlight MFA Related Conditional Access Policy Gaps
 
@@ -31,20 +32,24 @@ The report is sorted by risk, so administrators will be able to easily discern t
 ```
 
 ## Requirements
-The Microsoft Graph PowerShell module, and sufficient permissions to run the queries are required.
+The Microsoft Graph Beta and ImportExcel PowerShell modules, and sufficient permissions to run the queries are required.
 The first time Microsoft Graph requests the necessary permissions, a Global Administrator must grant the permissions request on behalf of the tenant.
 
 ### Required Permissions
 ```
 Reports.Read.All
-Group.Read.All
-GroupMember.Read.All
+Policy.Read.All
+Directory.Read.All
 User.Read.All
+UserAuthenticationMethod.Read.All
 ```
 ### Graph Modules Used
 ```
 Microsoft.Graph.Reports
+Microsoft.Graph.Beta.Identity.DirectoryManagement
 Microsoft.Graph.Groups
+Microsoft.Graph.Beta.Identity.SignIns
+ImportExcel
 ```
 
 ## Using the Script
