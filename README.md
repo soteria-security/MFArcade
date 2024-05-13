@@ -4,7 +4,7 @@
 MFArcade is a PowerShell script that aims to assist administrators in generating and understanding reports of Microsoft 365 User Multi-factor Authentication Registration Status and Highlight MFA Related Conditional Access Policy Gaps
 
 ## Purpose
-MFArcade was created asa  result of a request to be able to view Microsoft 365 users registered MFA methods and gaps in Conditional Access Policies that may affect the user(s). The result is this script. Borrowing from our [Invoke-MFAMethodsReport](https://github.com/soteria-security/Invoke-MFAMethodsReport) we designed MFArcade to give administrators a quick and easy way to generate risk-based report of user multi-factor authentication registration methods and find potential CA gaps.
+MFArcade was created as a  result of a request to be able to view Microsoft 365 users registered MFA methods and gaps in Conditional Access Policies that may affect the user(s). The result is this script. Borrowing from our [Invoke-MFAMethodsReport](https://github.com/soteria-security/Invoke-MFAMethodsReport) we designed MFArcade to give administrators a quick and easy way to generate risk-based report of user multi-factor authentication registration methods and find potential CA gaps.
 The report is sorted by risk, so administrators will be able to easily discern the most at risk users based on their any potential CA gaps and the user's MFA configuration, including if the user is registered, if they hold an administrative role in the tenant, all registered methods, and the user selected default method used to authenticate the user.
 
 ## Script Help
