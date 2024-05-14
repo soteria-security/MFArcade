@@ -28,7 +28,7 @@ param (
     [ValidateSet("All", "HTML", "CSV", "XML", "JSON", "EXCEL", "None",
         IgnoreCase = $true)]
     [string] $reportType = "All",
-    [Parameter(Mandatory = $true,
+    [Parameter(Mandatory = $false,
         HelpMessage = 'Opens the genrated report(s)')]
     [switch] $ShowReport
 )
@@ -164,7 +164,7 @@ Function Invoke-MFArcade {
                         $userTemplate.IsExternal = $false
                     }
 
-                    $target = (Invoke-GraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/users/$($upn)?select=id,displayName")
+                    $target = (Invoke-GraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/users/$($upn)?select=id,displayName,accountEnabled")
 
                     $targetAuthMethods = (Invoke-GraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/users/$($upn)/authentication/methods").value
 
@@ -289,8 +289,8 @@ Function Invoke-MFArcade {
 
                     $userTemplate.Name = $target.displayName
                     $userTemplate.Id = $target.id
-                    $userTemplate.IsEnabled = $lookup.isEnabled
-                    $userTemplate.IsMFACapable = $lookup.isCapable
+                    $userTemplate.IsEnabled = $target.accountEnabled
+                    $userTemplate.IsMFACapable = $lookup.isMfaCapable
                     $userTemplate.IsMFARegistered = $lookup.isMfaRegistered
                     $userTemplate.IsSSPRCapable = $lookup.isSsprCapable
                     $userTemplate.IsSSPREnabled = $lookup.isSsprEnabled
@@ -1060,7 +1060,9 @@ Function Invoke-MFArcade {
         Generate-XMLReport
     }
     ElseIf ($reportType -eq 'None') {
-        $global:sortedResults | Out-GridView
+        $data = $global:sortedResults | Select-Object Name, Id, UserPrincipalName, IsEnabled, IsMFACapable, IsMFARegistered, IsSSPRCapable, IsSSPREnabled, IsSSPRRegistered, SystemPreferredMethodEnforced, SystemEnforcedMethod, IsPasswordlessCapable, IsAdmin, DefaultMFAMethod, UserPreferredMFAMethod, @{n = 'RegisteredMFAMethods'; e = { $_.RegisteredMFAMethods -split ',' -join "`n" } }, @{n = 'MemberOf'; e = { $_.MemberOf -split ',' -join "`n" } }, @{n = 'AppliedCAPolicies'; e = { $_.AppliedCAPolicies -split ',' -join "`n" } }, @{n = 'CAPoliciesNotApplied'; e = { $_.CAPoliciesNotApplied -split ',' -join "`n" } }, @{n = 'PossibleCAGaps'; e = { $_.PossibleCAGaps -split ',' -join "`n" } }
+        
+        $data | Out-GridView
     }
 }
 
