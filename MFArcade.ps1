@@ -209,24 +209,24 @@ Function Invoke-MFArcade {
                         # Gaps in CA Policies
                         # By Role
                         If (($policy.state -eq 'enabled') -and ($policy.conditions.users.includeroles -eq "All") -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted under 'All roles', and is explicitly excluded via direct, group membership, or role assignment."
                         }
                         Elseif (($policy.state -eq 'enabled') -and ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.includeroles }) -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted explicitly via role assignment, and is explicitly excluded via direct, group membership, or role assignment."
                         }
                         # By User
                         If (($policy.state -eq 'enabled') -and ($policy.conditions.users.includeusers -eq "All") -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted under 'All users', and is explicitly excluded via direct, group membership, or role assignment."
                         }
                         Elseif (($policy.state -eq 'enabled') -and ($target.id | Where-Object { $_ -in $policy.conditions.users.includeusers }) -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted explicitly, and is explicitly excluded via direct, group membership, or role assignment."
                         }
                         # By Group
                         If (($policy.state -eq 'enabled') -and ($policy.conditions.users.includegroups -eq "All") -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted under 'All groups', and is explicitly excluded via direct, group membership, or role assignment."
                         }
                         Elseif (($policy.state -eq 'enabled') -and ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.includegroups }) -and (($policy.conditions.users.excludeusers -contains $target.id)) -or ($grpMemberships.id | Where-Object { $_ -in $policy.conditions.users.excludegroups }) -or ($grpMemberships.roleTemplateId | Where-Object { $_ -in $policy.conditions.users.excluderoles })) {
-                            $caGaps += $($policy.DisplayName)
+                            $caGaps += "$($policy.DisplayName): $($target.displayName) is targeted explicitly via group membership, and is explicitly excluded via direct, group membership, or role assignment."
                         }
                     }
 
