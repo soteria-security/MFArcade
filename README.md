@@ -1,11 +1,16 @@
-<img src="Images/MFArcade.png" width=35% height=35% />
+<p align="center">
+    <img src="Images/MFArcade.png" width=35% height=35%/>
+</p>
 
 # MFArcade
-MFArcade is a PowerShell script that aims to assist administrators in generating and understanding reports of Microsoft 365 User Multi-factor Authentication Registration Status and Highlight MFA Related Conditional Access Policy Gaps
+MFArcade is a PowerShell script that aims to assist administrators in generating and understanding reports of Microsoft 365 User Multi-factor Authentication Registration Status and highlight MFA Related Conditional Access Policy Gaps.
+
+<p align="center">
+    <img src="https://media.giphy.com/media/SP7ik5yV6FlMk/giphy.gif?cid=ecf05e47vqkqwhzjwqwwp1jd77fp7hcp7y0wwfawowtdlopm&ep=v1_gifs_search&rid=giphy.gif&ct=g"/>
+</p>
 
 ## Purpose
-MFArcade was created as a  result of a request to be able to view Microsoft 365 users registered MFA methods and gaps in Conditional Access Policies that may affect the user(s). The result is this script. Borrowing from our [Invoke-MFAMethodsReport](https://github.com/soteria-security/Invoke-MFAMethodsReport) we designed MFArcade to give administrators a quick and easy way to generate risk-based report of user multi-factor authentication registration methods and find potential CA gaps.
-The report is sorted by risk, so administrators will be able to easily discern the most at risk users based on their any potential CA gaps and the user's MFA configuration, including if the user is registered, if they hold an administrative role in the tenant, all registered methods, and the user selected default method used to authenticate the user.
+MFArcade was created as a result of a request to be able to view Microsoft 365 users registered MFA methods and gaps in Conditional Access Policies that may affect the user(s). The result is this script. Borrowing from our [Invoke-MFAMethodsReport](https://github.com/soteria-security/Invoke-MFAMethodsReport) we designed MFArcade to give administrators a quick and easy way to generate risk-based reports of user multi-factor authentication registration methods and find potential CA gaps. The report is sorted by risk, so administrators will be able to easily discern the most at risk users based on their potential CA gaps and the user's MFA configuration, including if the user is registered, if they hold an administrative role in the tenant, all of their registered methods, and the selected default method used to authenticate the user.
 
 ## Script Help
 ```pwsh
@@ -32,8 +37,7 @@ The report is sorted by risk, so administrators will be able to easily discern t
 ```
 
 ## Requirements
-The Microsoft Graph Beta and ImportExcel PowerShell modules, and sufficient permissions to run the queries are required.
-The first time Microsoft Graph requests the necessary permissions, a Global Administrator must grant the permissions request on behalf of the tenant.
+The Microsoft Graph Beta and ImportExcel PowerShell modules, and sufficient permissions to run the queries are required. The first time Microsoft Graph requests the necessary permissions, a Global Administrator must grant the permissions request on behalf of the tenant.
 
 ### Required Permissions
 ```
@@ -74,3 +78,8 @@ PS C:\> .\MFArcade.ps1 -OutPath "$reports\MFArcade" -reportType XML
        # or
 PS C:\> .\MFArcade.ps1 -OutPath "$reports\MFArcade" -reportType CSV
 ```
+<img src="Images/Progress.png"/>
+<img src="Images/GridView.png"/>
+<img src="Images/Excel_1.png"/>
+<img src="Images/Excel_2.png"/>
+<img src="Images/JSON_Report.png"/>
