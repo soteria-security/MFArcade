@@ -58,7 +58,7 @@ ImportExcel
 
 ## Using the Script
 ```pwsh
-PS C:\> git clone 'https://github.com/soteria-security/Invoke-MFAMethodsReport.git'
+PS C:\> git clone 'https://github.com/soteria-security/MFArcade.git'
 PS C:\> cd .\MFArcade
 PS C:\> .\MFArcade.ps1 -OutPath "$reports\MFArcade" -reportType None
 ```
