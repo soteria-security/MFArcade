@@ -1013,7 +1013,6 @@ Function Invoke-MFArcade {
         $data = $data | Sort-Object @{ Expression = { [Array]::IndexOf(@('Critical', 'High', 'Medium', 'Low'), $_.Risk) } }
     
         $chart = @{
-            WorkSheet = $excelReport.Summary
             Title     = "Risk Distribution"
             XRange    = 'Risk'
             YRange    = 'RiskCount'
