@@ -50,7 +50,7 @@ Function Invoke-MFArcade {
     Function Connect-Session {
         $connection = Get-MgContext
 
-        $reqdScopes = @("Reports.Read.All", "Policy.Read.All", "Directory.Read.All", "User.Read.All", "UserAuthenticationMethod.Read.All")
+        $reqdScopes = @("Reports.Read.All", "Policy.Read.All", "Directory.Read.All", "User.Read.All", "UserAuthenticationMethod.Read.All", "Auditlog.Read.All")
 
         If ($connection) {
             $activeScopes = $connection.Scopes
@@ -89,7 +89,7 @@ Function Invoke-MFArcade {
 
         If (! $establishedConnection) {
             Write-Host "Connecting to Microsoft Graph"
-            Connect-MgGraph -ContextScope Process -Scopes "Reports.Read.All", "Policy.Read.All", "Directory.Read.All", "User.Read.All", "UserAuthenticationMethod.Read.All"
+            Connect-MgGraph -ContextScope Process -Scopes "Reports.Read.All", "Policy.Read.All", "Directory.Read.All", "User.Read.All", "UserAuthenticationMethod.Read.All", "Auditlog.Read.All"
         }
     }
 
